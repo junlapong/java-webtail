@@ -5,4 +5,4 @@
     <param-name>logdir</param-name>
     <param-value>..\\log</param-value>
   </context-param>
-<web-app>
+</web-app>
