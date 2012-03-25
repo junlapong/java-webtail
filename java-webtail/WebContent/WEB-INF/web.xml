@@ -3,6 +3,6 @@
   <context-param>
     <description>path to log folder</description>
     <param-name>logdir</param-name>
-    <param-value>..\\log</param-value>
+    <param-value>logs</param-value>
   </context-param>
 </web-app>

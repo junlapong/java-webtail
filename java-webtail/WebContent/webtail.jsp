@@ -13,15 +13,16 @@
 <% 
    String strLineSep = System.getProperty("line.separator");
    String strFileSep = System.getProperty("file.separator");
-   String strDirName = "/home/ron/workspace-eclipse/java-webtail/WebContent/logs";
-   /*
+   String strDirName = "logs";
+
+   
    String strCtxParam = config.getServletContext().getInitParameter("logdir");
    if (strCtxParam != null) {
 	   if(!strCtxParam.equals("")) {
 		   strDirName = strCtxParam;
 	   }
    }
-   */
+      
    String strLogName = "";
    String strReqLogName = request.getParameter("log");
    File dir = new File(strDirName);
