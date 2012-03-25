@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@page import="org.webtail.tail.Tail"%>
 <%@page import="java.io.File"%>
+<%@page import="org.webtail.tail.LogFile"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,14 +11,17 @@
 </head>
 <body>
 <% 
-   String strDirName = "..\\log";
+   String strLineSep = System.getProperty("line.separator");
+   String strFileSep = System.getProperty("file.separator");
+   String strDirName = "/home/ron/workspace-eclipse/java-webtail/WebContent/logs";
+   /*
    String strCtxParam = config.getServletContext().getInitParameter("logdir");
    if (strCtxParam != null) {
 	   if(!strCtxParam.equals("")) {
 		   strDirName = strCtxParam;
 	   }
    }
-   
+   */
    String strLogName = "";
    String strReqLogName = request.getParameter("log");
    File dir = new File(strDirName);
@@ -26,7 +30,8 @@
            return name.endsWith(".log");
        }
    };
-  String[] strLogFiles = dir.list(filter);
+   String[] strLogFiles = dir.list(filter);
+   java.util.Arrays.sort(strLogFiles);
    int iLines = 50;
    String strReqLines = request.getParameter("lines");
    if (strReqLines != null) {
@@ -37,18 +42,21 @@
    } else if (strLogFiles.length >= 1){
 	   	strLogName = strLogFiles[0];
    }
-   Tail t = new Tail();
-   File f = new File(strDirName + "\\" + strLogName);
+   
+   
+   File f = new File(strDirName + strFileSep + strLogName);
+   LogFile logFile = new LogFile(f);
+   Tail t = new Tail(logFile);
    String strTaillog = "";
    try {
-       strTaillog = t.tailLog(f, iLines);
-       strTaillog = strTaillog.replaceAll("\n", "<br>");
+       strTaillog = t.tailLog(iLines);
+       strTaillog = strTaillog.replaceAll(strLineSep, "<br>");
    }catch(Exception e1) {
        
    }
 %>
 <div>
-<form action="taillog.jsp" method="post" name="taillog">
+<form action="webtail.jsp" method="post" name="taillog">
 <select name="log" onchange="this.form.submit();">
     <%for(String strLogFile : strLogFiles)  {
         if(strLogFile.equals(strLogName)) {%>

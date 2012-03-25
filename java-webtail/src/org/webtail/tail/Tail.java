@@ -1,20 +1,19 @@
 package org.webtail.tail;
 
 
-import java.io.File;
-
 public class Tail {
 
-	private String strLogPath = "";
+	private LogFile file;
 	
-	public Tail() {
+	public Tail(LogFile file) {
+		this.file = file;
 		
 	}
 	
-	 public String tailLog( File file, int lines) {
+	 public String tailLog(int lines) {
 		    try {
-		        java.io.RandomAccessFile fileHandler = new java.io.RandomAccessFile( file, "r" );
-		        long fileLength = file.length() - 1;
+		        java.io.RandomAccessFile fileHandler = new java.io.RandomAccessFile( file.getFile(), "r" );
+		        long fileLength = file.getFileSize() - 1;
 		        StringBuilder sb = new StringBuilder();
 		        int line = 0;
 
@@ -54,5 +53,6 @@ public class Tail {
 		        return null;
 		    }
 		}
+
 
 }
