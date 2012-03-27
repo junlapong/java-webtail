@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <%@page import="org.webtail.tail.Tail"%>
 <%@page import="java.io.File"%>
 <%@page import="org.webtail.tail.LogFile"%>
@@ -7,14 +7,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet/less" type="text/css" href="css/style.less">
+<script src="js/scroll.js" language="javascript" type="text/javascript"></script>
+<script src="js/less.js" type="text/javascript"></script>
 <title>Tail Log</title>
 </head>
 <body>
-	<% 
+    <% 
    String strLineSep = System.getProperty("line.separator");
    if (strLineSep != null) {
-	  if(strLineSep.equals("\r\n")) {
-		  strLineSep = "\n";
+      if(strLineSep.equals("\r\n")) {
+          strLineSep = "\n";
       }
    }
    String strFileSep = System.getProperty("file.separator");
@@ -23,9 +26,9 @@
    
    String strCtxParam = config.getServletContext().getInitParameter("logdir");
    if (strCtxParam != null) {
-	   if(!strCtxParam.equals("")) {
-		   strDirName = strCtxParam;
-	   }
+       if(!strCtxParam.equals("")) {
+           strDirName = strCtxParam;
+       }
    }
       
    String strLogName = "";
@@ -46,7 +49,7 @@
    if (strReqLogName != null) {
        strLogName = strReqLogName;
    } else if (strLogFiles.length >= 1){
-	   	strLogName = strLogFiles[0];
+        strLogName = strLogFiles[0];
    }
    
    
@@ -61,23 +64,23 @@
        
    }
 %>
-	<div>
-		<form action="webtail.jsp" method="post" name="taillog">
-			<select name="log" onchange="this.form.submit();">
-				<%for(String strLogFile : strLogFiles)  {
+    <div class="headerform">
+        <form action="webtail.jsp" method="post" name="taillog">
+            <select name="log" onchange="this.form.submit();">
+                <%for(String strLogFile : strLogFiles)  {
         if(strLogFile.equals(strLogName)) {%>
-				<option selected><%=strLogFile %></option>
-				<%} else {%>
-				<option><%=strLogFile %></option>
+                <option selected><%=strLogFile %></option>
+                <%} else {%>
+                <option><%=strLogFile %></option>
 
-				<%}
+                <%}
     }
     %>
-			</select> Number of lines: <input type="text" name="lines"
-				value="<%=iLines %>" onchange="this.form.submit();" />
-		</form>
-		<hr>
-	</div>
-	<p style="font: 9pt courier;"><%=strTaillog %></p>
+            </select> Number of lines: <input type="text" name="lines"
+                value="<%=iLines %>" onchange="this.form.submit();" />
+        </form>
+        <hr>
+    </div>
+    <p class="content"><%=strTaillog %></p>
 </body>
 </html>
