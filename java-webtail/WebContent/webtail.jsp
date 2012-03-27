@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@page import="org.webtail.tail.Tail"%>
 <%@page import="java.io.File"%>
 <%@page import="org.webtail.tail.LogFile"%>
@@ -10,8 +10,13 @@
 <title>Tail Log</title>
 </head>
 <body>
-<% 
+	<% 
    String strLineSep = System.getProperty("line.separator");
+   if (strLineSep != null) {
+	  if(strLineSep.equals("\r\n")) {
+		  strLineSep = "\n";
+      }
+   }
    String strFileSep = System.getProperty("file.separator");
    String strDirName = "logs";
 
@@ -56,23 +61,23 @@
        
    }
 %>
-<div>
-<form action="webtail.jsp" method="post" name="taillog">
-<select name="log" onchange="this.form.submit();">
-    <%for(String strLogFile : strLogFiles)  {
+	<div>
+		<form action="webtail.jsp" method="post" name="taillog">
+			<select name="log" onchange="this.form.submit();">
+				<%for(String strLogFile : strLogFiles)  {
         if(strLogFile.equals(strLogName)) {%>
-            <option selected><%=strLogFile %></option>
-        <%} else {%>
-            <option><%=strLogFile %></option>
-         
-    <%}
+				<option selected><%=strLogFile %></option>
+				<%} else {%>
+				<option><%=strLogFile %></option>
+
+				<%}
     }
     %>
-</select>
-Number of lines: <input type="text" name="lines" value="<%=iLines %>" onchange="this.form.submit();"/>
-</form>
-<hr>
-</div>
-<p style="font: 9pt courier;"><%=strTaillog %></p>
+			</select> Number of lines: <input type="text" name="lines"
+				value="<%=iLines %>" onchange="this.form.submit();" />
+		</form>
+		<hr>
+	</div>
+	<p style="font: 9pt courier;"><%=strTaillog %></p>
 </body>
 </html>
