@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://tail.webtail.org" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://tail.webtail.org" xmlns:intf="http://tail.webtail.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://tail.webtail.org" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="tailLog">
+    <complexType>
+     <sequence>
+      <element name="lines" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tailLogResponse">
+    <complexType>
+     <sequence>
+      <element name="tailLogReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="tailLogResponse">
+
+      <wsdl:part element="impl:tailLogResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tailLogRequest">
+
+      <wsdl:part element="impl:tailLog" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Tail">
+
+      <wsdl:operation name="tailLog">
+
+         <wsdl:input message="impl:tailLogRequest" name="tailLogRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:tailLogResponse" name="tailLogResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TailSoapBinding" type="impl:Tail">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="tailLog">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="tailLogRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="tailLogResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TailService">
+
+      <wsdl:port binding="impl:TailSoapBinding" name="Tail">
+
+         <wsdlsoap:address location="http://localhost:8080/java-webtail/services/Tail"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
