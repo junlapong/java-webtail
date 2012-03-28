@@ -46,3 +46,8 @@ function currScrollPos() {
 		document.getElementById('gotobottom').checked = false;
 	}
 }
+
+function logfileChanged() {
+	document.getElementById('gotobottom').checked = true;
+	document.forms['headerform'].submit();
+}

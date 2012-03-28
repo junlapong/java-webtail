@@ -81,7 +81,7 @@
 %>
     <div class="headerform">
         <form id="headerform" action="webtail.jsp" method="post" name="taillog">
-            <select name="log" onchange="this.form.submit();">
+            <select name="log" onchange="javascript:logfileChanged();">
                 <%for(String strLogFile : strLogFiles)  {
         if(strLogFile.equals(strLogName)) {%>
                 <option selected><%=strLogFile %></option>
