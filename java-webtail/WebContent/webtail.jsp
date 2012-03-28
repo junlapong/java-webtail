@@ -49,7 +49,11 @@
    String strChecked = "";
    String strCheckbox = request.getParameter("gotobottom");
    if (strCheckbox != null) {
-        strChecked = "checked";
+	   strChecked = "checked";   
+   } else {
+	   if (request.getParameter("prevScroll") == null) {
+		   strChecked = "checked"; 
+	   }
    }
    
    String strPrevScroll = request.getParameter("currScroll");
@@ -89,7 +93,7 @@
     %>
             </select> 
             Number of lines: <input type="text" name="lines" value="<%=iLines %>" onchange="this.form.submit();" />
-            Goto bottom: <input type="checkbox" id="gotobottom" name="gotobottom" value="gotobottom" <%=strChecked %> />
+            Goto bottom: <input type="checkbox" id="gotobottom" name="gotobottom" value="gotobottom" <%=strChecked %> onchange="javascript:pagerefresh()" />
             <input type="hidden" id="currScroll" name="currScroll" value="" />
             <input type="hidden" id="prevScroll" name="prevScroll" value="<%=strPrevScroll %>" />
             <a href="javascript:pagerefresh()">Refresh</a>
