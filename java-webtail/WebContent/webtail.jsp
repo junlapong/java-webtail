@@ -12,7 +12,7 @@
 <script src="js/less.js" type="text/javascript"></script>
 <title>Tail Log</title>
 </head>
-<body>
+<body onscroll="javascript:currScrollPos();">
     <% 
    String strLineSep = System.getProperty("line.separator");
    if (strLineSep != null) {
@@ -51,6 +51,12 @@
    if (strCheckbox != null) {
         strChecked = "checked";
    }
+   
+   String strPrevScroll = request.getParameter("currScroll");
+   if (strPrevScroll == null) {
+        strPrevScroll = "0";
+   }
+   
    if (strReqLogName != null) {
        strLogName = strReqLogName;
    } else if (strLogFiles.length >= 1){
@@ -83,7 +89,9 @@
     %>
             </select> 
             Number of lines: <input type="text" name="lines" value="<%=iLines %>" onchange="this.form.submit();" />
-            Goto bottom: <input type="checkbox" id="gotobottom" name="gotobottom" value="gotobottom" <%=strChecked %>>
+            Goto bottom: <input type="checkbox" id="gotobottom" name="gotobottom" value="gotobottom" <%=strChecked %> />
+            <input type="hidden" id="currScroll" name="currScroll" value="" />
+            <input type="hidden" id="prevScroll" name="prevScroll" value="<%=strPrevScroll %>" />
             <a href="javascript:pagerefresh()">Refresh</a>
         </form>
         

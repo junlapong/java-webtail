@@ -5,7 +5,10 @@ function toBottom() {
 	if (bChecked == true) {
 		window.scrollTo(0, document.body.scrollHeight);
 	} else {
-		
+		var prevScroll = document.getElementById('prevScroll').value;
+		if (prevScroll != null) {
+			window.scrollTo(0, prevScroll);
+		}
 	}
 }
 
@@ -30,4 +33,8 @@ function getUrlVars()
         vars[hash[0]] = hash[1];
     }
     return vars;
+}
+
+function currScrollPos() {
+	document.getElementById('currScroll').value = window.pageYOffset;
 }
