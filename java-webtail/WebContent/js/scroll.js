@@ -36,5 +36,13 @@ function getUrlVars()
 }
 
 function currScrollPos() {
+	//var obj = document.getElementById('content');
 	document.getElementById('currScroll').value = window.pageYOffset;
+	document.getElementById('maxScroll').value = document.body.scrollHeight;
+	var curr = window.innerHeight + window.pageYOffset;
+	if (curr >= document.getElementById('maxScroll').value) {
+		document.getElementById('gotobottom').checked = true;
+	} else {
+		document.getElementById('gotobottom').checked = false;
+	}
 }

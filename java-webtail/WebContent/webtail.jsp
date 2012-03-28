@@ -96,11 +96,12 @@
             Goto bottom: <input type="checkbox" id="gotobottom" name="gotobottom" value="gotobottom" <%=strChecked %> onchange="javascript:pagerefresh()" />
             <input type="hidden" id="currScroll" name="currScroll" value="" />
             <input type="hidden" id="prevScroll" name="prevScroll" value="<%=strPrevScroll %>" />
+            <input type="hidden" id="maxScroll" name="maxScroll" value="" />
             <a href="javascript:pagerefresh()">Refresh</a>
         </form>
         
         <hr>
     </div>
-    <p class="content"><%=strTaillog %></p>
+    <p class="content" id="content"><%=strTaillog %></p>
 </body>
 </html>
