@@ -46,6 +46,11 @@
    if (strReqLines != null) {
        iLines = Integer.parseInt(strReqLines);
    }
+   String strChecked = "";
+   String strCheckbox = request.getParameter("gotobottom");
+   if (strCheckbox != null) {
+        strChecked = "checked";
+   }
    if (strReqLogName != null) {
        strLogName = strReqLogName;
    } else if (strLogFiles.length >= 1){
@@ -76,8 +81,9 @@
                 <%}
     }
     %>
-            </select> Number of lines: <input type="text" name="lines"
-                value="<%=iLines %>" onchange="this.form.submit();" />
+            </select> 
+            Number of lines: <input type="text" name="lines" value="<%=iLines %>" onchange="this.form.submit();" />
+            Goto bottom: <input type="checkbox" id="gotobottom" name="gotobottom" value="gotobottom" <%=strChecked %>>
             <a href="javascript:pagerefresh()">Refresh</a>
         </form>
         
