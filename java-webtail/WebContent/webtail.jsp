@@ -65,7 +65,7 @@
    }
 %>
     <div class="headerform">
-        <form action="webtail.jsp" method="post" name="taillog">
+        <form id="headerform" action="webtail.jsp" method="post" name="taillog">
             <select name="log" onchange="this.form.submit();">
                 <%for(String strLogFile : strLogFiles)  {
         if(strLogFile.equals(strLogName)) {%>
@@ -78,7 +78,9 @@
     %>
             </select> Number of lines: <input type="text" name="lines"
                 value="<%=iLines %>" onchange="this.form.submit();" />
+            <a href="javascript:pagerefresh()">Refresh</a>
         </form>
+        
         <hr>
     </div>
     <p class="content"><%=strTaillog %></p>
