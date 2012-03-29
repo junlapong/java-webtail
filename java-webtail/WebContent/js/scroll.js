@@ -1,4 +1,10 @@
-window.onload=toBottom;
+function pageload() {
+	toBottom();
+	var sec = document.getElementById('seconds').value;
+	timedRefresh(sec * 1000);
+	
+}
+
 
 function toBottom() {
 	var bChecked = document.getElementById('gotobottom').checked;

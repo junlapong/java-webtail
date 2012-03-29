@@ -7,12 +7,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
+
 <link rel="stylesheet/less" type="text/css" href="css/style.less">
 <script src="js/scroll.js" language="javascript" type="text/javascript"></script>
 <script src="js/less.js" type="text/javascript"></script>
 <title>Tail Log</title>
 </head>
-<body onscroll="javascript:currScrollPos();">
+<body onscroll="javascript:currScrollPos();" onload="javascript:pageload();">
     <% 
    String strLineSep = System.getProperty("line.separator");
    if (strLineSep != null) {
@@ -61,6 +65,11 @@
         strPrevScroll = "0";
    }
    
+   String strSeconds = request.getParameter("seconds");
+   if (strSeconds == null) {
+	   strSeconds = "5";
+   }
+   
    if (strReqLogName != null) {
        strLogName = strReqLogName;
    } else if (strLogFiles.length >= 1){
@@ -98,6 +107,7 @@
             <input type="hidden" id="prevScroll" name="prevScroll" value="<%=strPrevScroll %>" />
             <input type="hidden" id="maxScroll" name="maxScroll" value="" />
             <a href="javascript:pagerefresh()">Refresh</a>
+            Refresh every: <input type="text" id="seconds" name="seconds" value="<%=strSeconds %>" size="3" onchange="this.form.submit();" /> seconds
         </form>
         
         <hr>
