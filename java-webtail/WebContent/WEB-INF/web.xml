@@ -5,4 +5,15 @@
     <param-name>logdir</param-name>
     <param-value>/var/log</param-value>
   </context-param>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>DownloadZipFile</display-name>
+  	<servlet-name>DownloadZipFile</servlet-name>
+  	<servlet-class>org.webtail.tail.DownloadZipFile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DownloadZipFile</servlet-name>
+  	<url-pattern>/DownloadZipFile</url-pattern>
+  </servlet-mapping>
 </web-app>

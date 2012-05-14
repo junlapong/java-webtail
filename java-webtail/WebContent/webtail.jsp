@@ -108,8 +108,9 @@
             <input type="hidden" id="maxScroll" name="maxScroll" value="" />
             <a href="javascript:pagerefresh()">Refresh</a>
             Refresh every: <input type="text" id="seconds" name="seconds" value="<%=strSeconds %>" size="3" onchange="this.form.submit();" /> seconds
+            <a href="<%="DownloadZipFile?logfile=" + strLogName %>">Download as ZIP</a>
         </form>
-        
+        	 
         <hr>
     </div>
     <p class="content" id="content"><%=strTaillog %></p>
