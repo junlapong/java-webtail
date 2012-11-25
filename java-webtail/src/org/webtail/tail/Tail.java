@@ -20,8 +20,11 @@ public class Tail {
 		        for( long filePointer = fileLength; filePointer != -1; filePointer-- ) {
 		            fileHandler.seek( filePointer );
 		            int readByte = fileHandler.readByte();
-
+	            	// 0xA == newline
 		            if( readByte == 0xA ) {
+		            	if(sb.length() != 0) {
+		            		line += 1;
+		            	}
 		                if (line == lines) {
 		                    if (filePointer == fileLength) {
 		                        continue;
@@ -29,8 +32,9 @@ public class Tail {
 		                        break;
 		                    }
 		                }
+		            // 0xD carriage return
 		            } else if( readByte == 0xD ) {
-		                line = line + 1;
+		            	line += 1;
 		                if (line == lines) {
 		                    if (filePointer == fileLength - 1) {
 		                        continue;
@@ -44,6 +48,7 @@ public class Tail {
 
 		        sb.deleteCharAt(sb.length()-1);
 		        String lastLine = sb.reverse().toString();
+		        lastLine = "<span>" + lastLine + "</span>";
 		        return lastLine;
 		    } catch( java.io.FileNotFoundException e ) {
 		        e.printStackTrace();

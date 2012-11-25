@@ -48,7 +48,10 @@
    int iLines = 50;
    String strReqLines = request.getParameter("lines");
    if (strReqLines != null) {
-       iLines = Integer.parseInt(strReqLines);
+	   if(strReqLines != "") {
+		   iLines = Integer.parseInt(strReqLines);   
+	   }
+       
    }
    String strChecked = "";
    String strCheckbox = request.getParameter("gotobottom");
@@ -89,7 +92,7 @@
    }
 %>
     <div class="headerform">
-        <form id="headerform" action="webtail.jsp" method="post" name="taillog">
+        <form id="headerform" action="#" method="post" name="taillog">
             <select name="log" onchange="javascript:logfileChanged();">
                 <%for(String strLogFile : strLogFiles)  {
         if(strLogFile.equals(strLogName)) {%>
