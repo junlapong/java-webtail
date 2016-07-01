@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="java-webtail" version="2.5" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd">
+
+    <context-param>
+        <description>path to log folder</description>
+        <param-name>logdir</param-name>
+        <param-value>/var/log</param-value>
+    </context-param>
+
+    <servlet>
+        <description></description>
+        <display-name>DownloadZipFile</display-name>
+        <servlet-name>DownloadZipFile</servlet-name>
+        <servlet-class>org.webtail.tail.DownloadZipFile</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DownloadZipFile</servlet-name>
+        <url-pattern>/DownloadZipFile</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>webtail.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- PATTERN -->
+			<!-- DEV : [%d{HH:mm:ss,SSS zzz}] %-5p [%t] %C{2}.%M(%F:%L) %m%n -->
+			<!-- PROD: [%d{HH:mm:ss,SSS zzz}] %-5p [%t] %C{2}.%M() - %m%n -->
+			<param name="ConversionPattern" value="[%d{HH:mm:ss,SSS zzz}] %-5p [%t] %C{2}.%M(%F:%L) - %m%n" />
+		</layout>
+	</appender>
+
+    <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="log/application.log" />
+        <param name="Append" value="true" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout" >
+			<param name="ConversionPattern" value="[%d{HH:mm:ss,SSS zzz}] %-5p [%t] %C.%M() - %m%n" />
+        </layout>
+    </appender>
+
+	<appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+		<param name="BufferSize" value="500" />
+		<param name="LocationInfo" value="true" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</appender>
+
+    <category name="test">
+        <priority value="DEBUG"/>
+    </category>
+
+	<root>
+		<priority value="INFO" />
+		<!-- CONSOLE, FILE, ASYNC -->
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</log4j:configuration>
